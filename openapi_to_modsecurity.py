@@ -16,16 +16,20 @@ if '.' not in openapi_filename:
 
 ext = openapi_filename.split('.')[-1]
 
-if ext in ['yml', 'yaml']:
-    print('Loading a YAML file - ', openapi_filename)
-    file = open(args.openapi_file, 'r')
-    file_content = file.read()
-    openapi = load(file_content, Loader=CLoader)
-    
-if ext in ['json']:
-    print('Loading a JSON file - ', openapi_filename)
-    file = open(args.openapi_file, 'r')
-    openapi = json.load(file)
+try:
+    if ext in ['yml', 'yaml']:
+        print('Loading a YAML file - ', openapi_filename)
+        file = open(args.openapi_file, 'r')
+        file_content = file.read()
+        openapi = load(file_content, Loader=CLoader)
+        
+    if ext in ['json']:
+        print('Loading a JSON file - ', openapi_filename)
+        file = open(args.openapi_file, 'r')
+        openapi = json.load(file)
+except FileNotFoundError:
+    print('This file does not exist: ', args.openapi_file)
+    exit(1)
 
 if "openapi" not in openapi:
     raise ValueError('The file does not seem to be an OpenAPI specification')
