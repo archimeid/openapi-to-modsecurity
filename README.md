@@ -7,6 +7,7 @@ Dependencies:
 * argparse - https://docs.python.org/3/library/argparse.html
 * pyyaml - https://pyyaml.org/wiki/PyYAMLDocumentation
 * json - https://docs.python.org/fr/3/library/json.html
+* pprint - To nicely debug objects
 
 
 Packages to install:
