@@ -8,8 +8,10 @@ Dependencies:
 * pyyaml - https://pyyaml.org/wiki/PyYAMLDocumentation
 * json - https://docs.python.org/fr/3/library/json.html
 * pprint - To nicely debug objects
+* Jinja2 - https://jinja.palletsprojects.com/en/3.0.x/
 
 
 Packages to install:
 
 pip3 install pyyaml
+pip3 install Jinja2
