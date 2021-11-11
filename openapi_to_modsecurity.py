@@ -26,3 +26,6 @@ if ext in ['json']:
     print('Loading a JSON file - ', openapi_filename)
     file = open(args.openapi_file, 'r')
     openapi = json.load(file)
+
+if "openapi" not in openapi:
+    raise ValueError('The file does not seem to be an OpenAPI specification')
