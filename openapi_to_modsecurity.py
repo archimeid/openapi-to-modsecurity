@@ -48,4 +48,4 @@ print('The base path is : <', base_path, '>')
 with open('modsecurity.cfg.j2') as tmpl_file:
     tmpl = Template(tmpl_file.read())
 
-print(tmpl.render(receiver='World'))
+print(tmpl.render(openapi=openapi, base_path=base_path))

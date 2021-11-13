@@ -1,1 +1,6 @@
-SecDefaultAction "phase:1,id:1,log,auditlog,deny,status:500"
+# Test
+SecDefaultAction "phase:2,id:1,log,auditlog,deny,status:500"
+
+{% for path in openapi.paths %}
+SecRule REQUEST_URL "{{ path }}" "phase:2,id:1,log,auditlog,allow"
+{% endfor %}
