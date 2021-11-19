@@ -1,6 +1,16 @@
-# Test
-SecDefaultAction "phase:2,id:1,log,auditlog,deny,status:500"
+SecMarker BEGIN_WHITELISTS
+{% set id = 0 %}
+
+SecMarker BEGIN_URLS_CHECK{% for path in openapi.paths %}
+    SecRule REQUEST_URL "{{ path }}" "phase:1,id:{{ id + loop.index }},log,auditlog,skipAfter:END_URLS_CHECK"{% endfor %}
+
+    SecAction "log,auditlog,deny,status:500"
+SecMarker END_URLS_CHECK{% set id = id + (openapi.paths | length) %}
 
 {% for path in openapi.paths %}
-SecRule REQUEST_URL "{{ path }}" "phase:2,id:1,log,auditlog,allow"
+SecMarker BEGIN_URL_{{ loop.index }}_PARAM_CHECK
+
+SecMarker END_URL_{{ loop.index }}_PARAM_CHECK
+
 {% endfor %}
+SecMarker END_WHITELISTS
